@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import AirtableTest from "../components/airtableTest";
 import styles from "../styles/Home.module.css";
 import myABI from "../abi.json";
+import Airtable from "airtable";
+
 export default function Home() {
 
 
@@ -10,7 +12,12 @@ export default function Home() {
   //Arkadia OGs
   // const { contract } = useContract('0x06ba631541b8FF2a6E8208b5C0d5F4c47ba2567e');
   // haxy rabbit
-  const { contract } = useContract('0x0125A4Ae30cA97B60457d424E002B1270EDDBDdd');
+  // const { contract } = useContract('0x0125A4Ae30cA97B60457d424E002B1270EDDBDdd');
+
+  //HaxRabito
+  const { contract } = useContract('0x830A0C890A1F969586612b1FD98480e9406941f4');
+
+
   //Arkadia Ogs
   // const { contract } = useContract('0x06ba631541b8FF2a6E8208b5C0d5F4c47ba2567e');
   // const { contract, isLoadingContacr, errorContract } = useContract("0x06ba631541b8FF2a6E8208b5C0d5F4c47ba2567e", myABI);
@@ -22,7 +29,7 @@ export default function Home() {
   // console.log('balance ', ownerBalance);
   // console.log('NFTS ', nfts);
 
-  const nftDrop = useNFTDrop('0x0125A4Ae30cA97B60457d424E002B1270EDDBDdd');
+  const nftDrop = useNFTDrop('0x830A0C890A1F969586612b1FD98480e9406941f4');
 
   const {
     mutate: burnNft,
@@ -35,11 +42,38 @@ export default function Home() {
   }
 
 
+  var Airtable = require('airtable');
+  var base = new Airtable({ apiKey: 'keyJfhBJq0Uru82AA' }).base('appz9X0qSweYkCBVX');
+
+
+  // add user address as white listed
+  const addFiled = (userAddress) => {
+    console.log(userAddress);
+    base('Mint Table Test2').create([
+      {
+        "fields": {
+          "Addresses": userAddress,
+          "Minted": "Yes"
+        }
+      }
+    ], function (err, records) {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      records.forEach(function (record) {
+        console.log(record.getId());
+      });
+    });
+  }
+
+
   useEffect(() => {
     contract?.events.addTransactionListener((event) => {
       console.log('C_Evnts ', event);
-      if (event.status == "completed" && isBurning) {
-        console.log(' BURRRRRRRRRRnnneedd, donde Passseddd');
+      if (event.status == "completed") {
+        console.log(' Burned and user address whitelisted');
+        addFiled(address)
       }
     })
   }, [isBurning]);
@@ -58,7 +92,7 @@ export default function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://thirdweb.com/">{address}</a>!
+          Welcome  <a href="https://thirdweb.com/">{address}</a>!
         </h1>
 
         <div className={styles.connect}>
@@ -97,7 +131,7 @@ export default function Home() {
 
 
         <div className={styles.grid}>
-          <AirtableTest address={address} />
+          {/* <AirtableTest address={address} /> */}
         </div>
       </main>
     </div>

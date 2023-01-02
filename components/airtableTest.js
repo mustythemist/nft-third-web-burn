@@ -62,7 +62,7 @@ const AirtableTest = ({ address }) => {
 
       {/* <input type="text" onChange={(e) => setuserAddress(e.target.value)} /> */}
       <button onClick={() => addFiled(address)}>Submit</button>
-      <button onClick={() => console.log(process.env.AIR_TABLE_KEY)}>ASD</button>
+      {/* <button onClick={() => console.log(process.env.AIR_TABLE_KEY)}>ASD</button> */}
 
     </div>
   );
