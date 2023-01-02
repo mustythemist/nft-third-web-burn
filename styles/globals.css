@@ -18,7 +18,44 @@ a {
 html {
   color-scheme: dark;
 }
+
 body {
   color: #e7e8e8;
   background: #0f1318;
+}
+
+
+
+
+
+.nf-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nf-grid img {
+  width: 160px;
+}
+
+.nf-item button {
+  cursor: pointer;
+}
+
+.burn-pop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #200d0ad6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burn-pop span {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 11px;
+  font-size: 42px;
+  font-weight: 100;
 }
