@@ -24,8 +24,12 @@ export default function Home() {
   // const { contract } = useContract('0x0125A4Ae30cA97B60457d424E002B1270EDDBDdd');
 
   //HaxRabito
+  // "0x830A0C890A1F969586612b1FD98480e9406941f4"
+
+  //Arkadians
+  // 0x3c178321f5BC73494046a46b5A065F9211b7C65E
   const { contract } = useContract(
-    "0x830A0C890A1F969586612b1FD98480e9406941f4"
+    "0x3c178321f5BC73494046a46b5A065F9211b7C65E"
   );
 
   //Arkadia Ogs
@@ -47,7 +51,7 @@ export default function Home() {
   // console.log('balance ', ownerBalance);
   // console.log('NFTS ', nfts);
 
-  const nftDrop = useNFTDrop("0x830A0C890A1F969586612b1FD98480e9406941f4");
+  const nftDrop = useNFTDrop("0x3c178321f5BC73494046a46b5A065F9211b7C65E");
 
   const {
     mutate: burnNft,
@@ -128,9 +132,9 @@ export default function Home() {
                 <br />
                 <button
                   disabled={isBurning}
-                  onClick={() =>
-                    burnNft({ tokenId: parseInt(item.metadata.id) })
-                  }
+                // onClick={() =>
+                //   burnNft({ tokenId: parseInt(item.metadata.id) })
+                // }
                 >
                   Burn
                 </button>
